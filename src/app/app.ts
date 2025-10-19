@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+
+export interface Vehicle {
+  id: number;
+  name: string;
+  price: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -15,7 +21,10 @@ export class App {
 
   quantity = signal(1);
   qtyAvailable = signal([1, 2, 3, 4, 5, 6]);
-  selectedVe
+  selectedVehicle = signal<Vehicle>({ id: 1, name: "at-at", price: 1000});
+  vehicles = signal<Vehicle[]>([]);
+
+  exPrice = computed(() => this.selectedVehicle().price * this.quantity());
 constructor() {
   console.log("quantity calue", this.quantity());
   // to update quantity
