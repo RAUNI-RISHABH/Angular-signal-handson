@@ -1,6 +1,16 @@
 
 
-<h1>Shopping </h1>
+<h1> Shopping </h1>
+
+<div>{{quantity()}}</div>
+
+<select [ngModel]="quantity()"
+    (change)="onQuantitySelected($any($event.target).value)">
+    <option disabled value="">--select a quantity--</option>
+    @for(q of qtyAvailable(); track $index) {
+    <option>{{q}}</option>
+    }
+</select>
 
 
 <router-outlet />
