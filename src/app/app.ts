@@ -1,42 +1,21 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, effect, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
 
-export interface Vehicle {
-  id: number;
-  name: string;
-  price: number;
-}
+import { CartService } from './cart/cart.service';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'swv-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule],
-  templateUrl: './app.html',
-  styleUrl: './app.sass'
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class App {
-  protected readonly title = signal('angular-signal');
+export class AppComponent {
+  pageTitle = 'Star Wars Vehicle Sales';
+  cartService = inject(CartService);
 
-  quantity = signal(1);
-  qtyAvailable = signal([1, 2, 3, 4, 5, 6]);
-  selectedVehicle = signal<Vehicle>({ id: 1, name: "at-at", price: 1000});
-  vehicles = signal<Vehicle[]>([]);
-
-  exPrice = computed(() => this.selectedVehicle().price * this.quantity());
-constructor() {
-  console.log("quantity calue", this.quantity());
-  // to update quantity
-  this.quantity.update(qty => qty * 2);
-}
-
-qtyEff = effect(() => console.log("latest qty: ", this.quantity()))
-
-onQuantitySelected(qty: number) {
-  this.quantity.set(qty);
-  // this.quantity.set(5);
-  // this.quantity.set(42);
-}
+  cartCount = computed(() => this.cartService.cartItems().reduce(
+    (acc, item) => acc + item.quantity, 0));
 
 }

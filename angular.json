@@ -6,9 +6,6 @@
       "angular-signal": {
         "projectType": "application",
         "schematics": {
-          "@schematics/angular:component": {
-            "style": "sass"
-          }
         },
         "root": "",
         "sourceRoot": "src",
@@ -22,7 +19,6 @@
                 "zone.js"
               ],
               "tsConfig": "tsconfig.app.json",
-              "inlineStyleLanguage": "sass",
               "assets": [
                 {
                   "glob": "**/*",
@@ -30,7 +26,7 @@
                 }
               ],
               "styles": [
-                "src/styles.sass"
+                "src/styles.css"
               ]
             },
             "configurations": {
@@ -80,7 +76,6 @@
                 "zone.js/testing"
               ],
               "tsConfig": "tsconfig.spec.json",
-              "inlineStyleLanguage": "sass",
               "assets": [
                 {
                   "glob": "**/*",
@@ -88,7 +83,7 @@
                 }
               ],
               "styles": [
-                "src/styles.sass"
+                "src/styles.css"
               ]
             }
           }
