@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  public pageTitle = 'Welcome to Star Wars Vehicle Sales';
+  public pageTitle = 'Welcome to Vehicle Sales';
 
 }

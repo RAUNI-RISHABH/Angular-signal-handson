@@ -29,7 +29,8 @@ export class CartService {
     const index = this.cartItems().findIndex(item =>
       item.vehicle.name === vehicle.name);
     if (index === -1) {
-      // Not already in the cart, so add with default quantity of 1
+      // Not already in the cart, so add with default quantity of 1, spread operator is used specificall to maek 
+      // assign new array copy inorder to signal to track those new element and tracked by angulat detectection
       this.cartItems.update(items => [...items, { vehicle, quantity: 1 }]);
     } else {
       // Already in the cart, so increase the quantity by 1

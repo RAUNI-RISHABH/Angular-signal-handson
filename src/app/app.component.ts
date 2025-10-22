@@ -12,7 +12,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  pageTitle = 'Star Wars Vehicle Sales';
+  pageTitle = 'Vehicle Sales';
   cartService = inject(CartService);
 
   cartCount = computed(() => this.cartService.cartItems().reduce(
